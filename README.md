@@ -1,5 +1,35 @@
 # TurnosClinica 
 
+Programa divididido en dos carpetas
+fronted y backend 
+
+fronted  tiene los archivos 
+	Main:  comienza el programa
+	Menu: se ingresan los datos
+	EntradaSalida: metodos para el ingresar y ver los datos
+
+
+backend tiene los archivos
+	ControlTurnos  con tres ArrayList turnos medicos pacientes (que en un futuro seran tablas)
+               Turno
+	Persona 
+		Medico subclase de Persona 
+		Paciente subclase de Persona 
+
+
+Que se puede hacer cualquiercosa es para practicar git
+
+Lo que me parece que le falta 
+
+	-Control de ingreso de datos, que los datos ingresados sean los correctos
+	-Que se pueda ingresar medicos nuevos
+	-Que se pueda ingresar pacientes nuevos
+	-Hacer un fronted con swing 
+	-un metodo que me traiga los datos de los pacientes cuando ingreso el dni 
+  
+	
+
+
 Clonar un repositorio utilizando la línea de comando
 
 En GitHub, visita la página principal del repositorio.

@@ -16,7 +16,7 @@ public class Menu {
 
 		ControlTurnos control = new ControlTurnos();
 
-		EntradaSalida.mostrarString("Programa para procesar los turnos de una clinina" + "\n\n Primero cargamos los turno");
+		EntradaSalida.mostrarString("Programa para procesar los turnos de una clinina" + "\n\n Primero se cargan los turno");
 		
 		ingresarDatos();
 

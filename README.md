@@ -12,7 +12,7 @@
 
 #### backend tiene los archivos
 	-ControlTurnos  con tres ArrayList turnos medicos pacientes (que en un futuro seran tablas)
-               Turno
+        -Turno
 	-Persona 
 		-Medico subclase de Persona 
 		-Paciente subclase de Persona 
@@ -37,32 +37,32 @@ Que se puede hacer cualquiercosa es para practicar git
 dos podemos modificar el proyecto 
 
  #### Descargan el proyecto,  lo clonan 
-**git clone https://github.com/programadorleo/TurnosClinica.git**
- Aca los dos estamos en la rama master y podemos trabajar con el mismo proyecto 
+### **git clone https://github.com/programadorleo/TurnosClinica.git**
+ #### Aca los dos estamos en la rama master y podemos trabajar con el mismo proyecto 
 
  #### Crean su propia rama para probar el codigo que van a modificar,  
  #### llamo a mi rama  "desarrollo" 
-**git branch desarrollo**
+### **git branch desarrollo**
 
  #### Ingreso a esa rama 
-**git checkout desarrollo**
+### **git checkout desarrollo**
 
   Realizo los cambios que creo necesarios, ya que estoy en una rama distinta puedo probar 
   lo que quiero 
 
  #### Uno mi rama "desarrolo" con la rama master principal 
-**git merge desarrollo** 
+### **git merge desarrollo** 
 
  #### Si todo esta bien borro la rama desarrollo(ya no me sirve mas, no se vuelve a utilizar)
-**git branch -d desarrollo**
+### **git branch -d desarrollo**
 
 ### terminado 
 
 
 #### cuando alguien hace un cambio en la rama principal, me los traigo con
-**git pull origin master** 
+### **git pull origin master** 
 
-y vuelvo a empezar -creo rama - ingreso a esa rama - modifico los archivos - uno mi rama a la principal 
-para seguir trabajando en el proyecto 
+#### y vuelvo a empezar -creo rama - ingreso a esa rama - modifico los archivos - uno mi rama a la principal 
+#### para seguir trabajando en el proyecto 
 
 

@@ -1,20 +1,21 @@
 # TurnosClinica 
 
-Programa para asignar turnos de una clinica 
-Esata divididido en dos carpetas fronted y backend 
+#Programa para asignar turnos de una clinica#
 
-fronted  tiene los archivos 
-	Main:  comienza el programa
-	Menu: se ingresan los datos
-	EntradaSalida: metodos para el ingresar y ver los datos
+##Esata divididido en dos carpetas fronted y backend## 
+
+###fronted  tiene los archivos### 
+	-Main:  comienza el programa
+	-Menu: se ingresan los datos
+	-EntradaSalida: metodos para el ingresar y ver los datos
 
 
-backend tiene los archivos
-	ControlTurnos  con tres ArrayList turnos medicos pacientes (que en un futuro seran tablas)
+###backend tiene los archivos###
+	-ControlTurnos  con tres ArrayList turnos medicos pacientes (que en un futuro seran tablas)
                Turno
-	Persona 
-		Medico subclase de Persona 
-		Paciente subclase de Persona 
+	-Persona 
+		-Medico subclase de Persona 
+		-Paciente subclase de Persona 
 		
 
 El que quiera participar lo asigno como colaborador asi pueden trabajar la rama master,
@@ -36,31 +37,32 @@ Lo que me parece que le falta
 dos podemos modificar el proyecto 
 
  Descargan el proyecto,  lo clonan 
-	git clone https://github.com/programadorleo/TurnosClinica.git
+**git clone https://github.com/programadorleo/TurnosClinica.git**
  Aca los dos estamos en la rama master y podemos trabajar con el mismo proyecto 
 
  Crean su propia rama para probar el codigo que van a modificar,  
  llamo a mi rama  "desarrollo" 
-	git branch desarrollo 
+**git branch desarrollo**
 
  Ingreso a esa rama 
-	git checkout desarrollo 
+**git checkout desarrollo**
 
   Realizo los cambios que creo necesarios, ya que estoy en una rama distinta puedo probar 
   lo que quiero 
 
  Uno mi rama "desarrolo" con la rama master principal 
-	git merge desarrollo 
+**git merge desarrollo** 
 
  Si todo esta bien borro la rama desarrollo(ya no me sirve mas, no se vuelve a utilizar)
-	git branch -d desarrollo
+**git branch -d desarrollo**
 
 terminado 
 
 
 cuando alguien hace un cambio en la rama principal, me los traigo con
-git pull origin master 
+**git pull origin master** 
 
 y vuelvo a empezar -creo rama - ingreso a esa rama - modifico los archivos - uno mi rama a la principal 
 para seguir trabajando en el proyecto 
+
 

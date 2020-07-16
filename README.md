@@ -1,7 +1,7 @@
 # TurnosClinica 
 
-Programa divididido en dos carpetas
-fronted y backend 
+Programa para asignar turnos de una clinica 
+Esata divididido en dos carpetas fronted y backend 
 
 fronted  tiene los archivos 
 	Main:  comienza el programa
@@ -15,6 +15,10 @@ backend tiene los archivos
 	Persona 
 		Medico subclase de Persona 
 		Paciente subclase de Persona 
+		
+
+El que quiera participar lo asigno como colaborador asi pueden trabajar la rama master,
+crea una rama personal para probar y despues sube directo al repositorio que trabajamos juntos 
 
 
 Que se puede hacer cualquiercosa es para practicar git
@@ -28,30 +32,35 @@ Lo que me parece que le falta
 	-un metodo que me traiga los datos de los pacientes cuando ingreso el dni 
   
 	
+  Me avisa su usuario, lo invito a participar, le va a llegar un mail, me aceptan la invitacion y ya los 
+dos podemos modificar el proyecto 
+
+ Descargan el proyecto,  lo clonan 
+	git clone https://github.com/programadorleo/TurnosClinica.git
+ Aca los dos estamos en la rama master y podemos trabajar con el mismo proyecto 
+
+ Crean su propia rama para probar el codigo que van a modificar,  
+ llamo a mi rama  "desarrollo" 
+	git branch desarrollo 
+
+ Ingreso a esa rama 
+	git checkout desarrollo 
+
+  Realizo los cambios que creo necesarios, ya que estoy en una rama distinta puedo probar 
+  lo que quiero 
+
+ Uno mi rama "desarrolo" con la rama master principal 
+	git merge desarrollo 
+
+ Si todo esta bien borro la rama desarrollo(ya no me sirve mas, no se vuelve a utilizar)
+	git branch -d desarrollo
+
+terminado 
 
 
-Clonar un repositorio utilizando la línea de comando
+cuando alguien hace un cambio en la rama principal, me los traigo con
+git pull origin master 
 
-En GitHub, visita la página principal del repositorio.
+y vuelvo a empezar -creo rama - ingreso a esa rama - modifico los archivos - uno mi rama a la principal 
+para seguir trabajando en el proyecto 
 
-Debajo del nombre del repositorio, da clic en Clonar o descargar.
-
-Botón Clone or download (Clonar o descargar)
-
-Para clonar el repositorio utilizando HTTPS, debajo de "Clonar con HTTPS", da clic en . Para clonar el repositorio utilizando una llave SSH , inlcuyendo un certificado emitido por la autoridad de certificados SSH de tu organización, da clic en Utilizar SSH, y después en .
-Botón Clone URL (Clonar URL)
-
-Abre la Git Bash.
-
-Cambia el directorio de trabajo actual a la ubicación en donde quieres clonar el directorio.
-
-Escribe git clone, y luego pega la URL que copiaste antes.
-
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
-Presiona Enter para crear tu clon local.
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
-> Cloning into `Spoon-Knife`...
-> remote: Counting objects: 10, done.
-> remote: Compressing objects: 100% (8/8), done.
-> remove: Total 10 (delta 1), reused 10 (delta 1)
-> Unpacking objects: 100% (10/10), done.

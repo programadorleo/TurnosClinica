@@ -26,26 +26,77 @@ public class Menu {
 
 	public static void ingresarDatos() {
 
-		nroDocumento = EntradaSalida.leerInt("Ingrese Número Documento");
-		
 		int op = 0;
-		boolean bandera = false;
-		while (!bandera) {
-			System.out.println("Ingrese Especialidad\n1. Cardiologia\n2. Clinica Medica\n3. Oftalmologia");
-			try {
-				op =  EntradaSalida.leerInt("Número");
-				
-			} catch (Exception e) {
-				System.out.println("Ingrese un número del 1 al 3.\n");
-				EntradaSalida.nuevaLinea();
+
+		//Número DNI
+		do {
+			System.out.println("Ingrese Número Documento");	
+			nroDocumento = chequeaNumeros(op);
+		} while (nroDocumento == 0);		
+		
+		//Especialidad
+		do {
+			System.out.println("Ingrese Especialidad\n1. Cardiologia\n2. Clinica Médica\n3. Oftalmología");
+			op = chequeaNumeros(op);
+			switch (op) {
+			case 1:
+				especialidad = "Cardiología";
+				break;
+			case 2:
+				especialidad = "Clínica Médica";
+				break;
+			case 3:
+				especialidad = "Oftalmología";
+				break;		
+			default:
+				System.out.println("Error. Especialidad no encontrada. Intente nuevamente.");
+				op = 0;
 			}
-			bandera = (op >=1 && op<=3) ? true : false; 			
-		}
+			
+		} while (op == 0); 
+		
+		//Día
+		do {
+			System.out.println("Ingrese día de la consulta");	
+			dia = chequeaNumeros(op);
+			if (dia < 1 || dia > 7) System.out.println("Ingrese sólo números del 1 al 7");
+		} while (dia < 1 || dia >7); 
 
-		dia = EntradaSalida.leerInt("Ingrese día de la consulta");
-
-		hora = EntradaSalida.leerInt("Ingrese hora de la consulta");
-
+		//Hora
+		do {
+			System.out.println("Ingrese hora de la consulta");	
+			hora = chequeaNumeros(op);
+			if (hora < 8 || hora > 20) System.out.println("Ingrese sólo números del 8 al 20");
+		} while (hora < 8 || hora > 20);
+		
+		//Imprime toda la información ingresada
+		imprimirInformacion();
+		System.out.println("\n");
+		
 	}
+	
+	public static int chequeaNumeros (int num) {
+		
+		try {
+			num =  EntradaSalida.leerInt("Número");
+			//Si se introdujo un número, la función devuelve su valor
+			return num;
+		} catch (Exception e) {
+			//Si se introdujeron caracteres no numéricos, se ejecuta lo siguiente
+			System.out.println("Ingrese sólo valores numéricos.\n");
+			//Se ingresa una nueva línea en el buffer para que no se ejecute infinitamente el código
+			EntradaSalida.nuevaLinea();
+			//La función devuelve 0 si se encontró este error
+			return 0;
+		}	
+	}
+	
+	public static void imprimirInformacion() {
+		System.out.println("DNI: " + nroDocumento);
+		System.out.println("Especialidad: " + especialidad);
+		System.out.println("Día: " + dia);
+		System.out.println("Hora: " + hora);
+	}
+		
 
 }

@@ -16,7 +16,7 @@ public class Menu {
 
 		ControlTurnos control = new ControlTurnos();
 
-		EntradaSalida.mostrarString("Programa para procesar los turnos de una clinina" + "\n\n Primero se cargan los turno");
+		EntradaSalida.mostrarString("Programa para procesar los turnos de una clínica" + "\n\nPrimero se cargan los turnos");
 		
 		ingresarDatos();
 
@@ -26,11 +26,23 @@ public class Menu {
 
 	public static void ingresarDatos() {
 
-		nroDocumento = EntradaSalida.leerInt("Ingrese Numero Documento");
+		nroDocumento = EntradaSalida.leerInt("Ingrese Número Documento");
+		
+		int op = 0;
+		boolean bandera = false;
+		while (!bandera) {
+			System.out.println("Ingrese Especialidad\n1. Cardiologia\n2. Clinica Medica\n3. Oftalmologia");
+			try {
+				op =  EntradaSalida.leerInt("Número");
+				
+			} catch (Exception e) {
+				System.out.println("Ingrese un número del 1 al 3.\n");
+				EntradaSalida.nuevaLinea();
+			}
+			bandera = (op >=1 && op<=3) ? true : false; 			
+		}
 
-		especialidad = EntradaSalida.leerString("Ingrese Especialidad\n Cardiologia - Clinica Medica - Oftalmologia");
-
-		dia = EntradaSalida.leerInt("Ingrese dia de la consulta");
+		dia = EntradaSalida.leerInt("Ingrese día de la consulta");
 
 		hora = EntradaSalida.leerInt("Ingrese hora de la consulta");
 

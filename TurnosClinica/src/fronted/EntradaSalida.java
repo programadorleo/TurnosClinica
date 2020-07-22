@@ -17,7 +17,6 @@ public class EntradaSalida {
 	public static int leerInt(String msje) {
 
 		System.out.println(msje + ": ");
-
 		return l.nextInt();
 
 	}
@@ -27,5 +26,11 @@ public class EntradaSalida {
 		System.out.println(msje);
 
 	}
+	
+	public static void nuevaLinea() {
+
+		l.nextLine();
+
+	}	
 
 }

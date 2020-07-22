@@ -69,7 +69,7 @@ public class Menu {
 			if (hora < 8 || hora > 20) System.out.println("Ingrese sólo números del 8 al 20");
 		} while (hora < 8 || hora > 20);
 		
-		//Imprime toda la información ingresada
+		//Imprime la información ingresada
 		imprimirInformacion();
 		System.out.println("\n");
 		

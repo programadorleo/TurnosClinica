@@ -27,6 +27,7 @@ public class EntradaSalida {
 
 	}
 	
+	//Mueve el cursor del buffer una línea abajo
 	public static void nuevaLinea() {
 
 		l.nextLine();

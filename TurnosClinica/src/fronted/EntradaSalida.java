@@ -4,20 +4,18 @@ import java.util.Scanner;
 
 public class EntradaSalida {
 
-	private static Scanner l = new Scanner(System.in);
+	public static Scanner EntradaTeclado = new Scanner(System.in);
 
-	public static String leerString(String msje) {
-
-		System.out.println(msje + ": ");
-
-		return l.next();
+	public static String leerString() {
 		
+		 return EntradaTeclado.next();
+	
 	}
 
 	public static int leerInt(String msje) {
 
 		System.out.println(msje + ": ");
-		return l.nextInt();
+		return EntradaTeclado.nextInt();
 
 	}
 
@@ -30,7 +28,7 @@ public class EntradaSalida {
 	//Mueve el cursor del buffer una línea abajo
 	public static void nuevaLinea() {
 
-		l.nextLine();
+		EntradaTeclado.nextLine();
 
 	}	
 

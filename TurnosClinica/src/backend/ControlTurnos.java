@@ -2,45 +2,112 @@ package backend;
 
 import java.util.*;
 
+import fronted.*;
+
 public class ControlTurnos {
 
+	private int nroDocumento;
+	private String especialidad;
+	private int dia;
+	private int hora;
+
 	private ArrayList<Medico> listaMedicos = new ArrayList<Medico>();
-
 	private ArrayList<Paciente> listaPacientes = new ArrayList<Paciente>();
-
 	private ArrayList<Turno> listaTurnos = new ArrayList<Turno>();
 
-	public void procesarTurno(int nroDocumento, String especialidad, int dia, int hora) {
+	public ControlTurnos(int nroDocumento, String especialidad, int dia, int hora) {
+		super();
+		this.nroDocumento = nroDocumento;
+		this.especialidad = especialidad;
+		this.dia = dia;
+		this.hora = hora;
+	}
+
+	public void procesarTurno() {
 
 		cargarListas();
-	
+
 		mostrarLista(listaTurnos, "turnos antes de cargar");
 
-		boolean encontrado = buscarTurno(especialidad,dia,hora);
+		boolean encontradoTurno = buscarTurno(especialidad, dia, hora);
 
-		if (encontrado) {
+		if (encontradoTurno) {
 
-			System.out.println("El turno esta ocupado");
+			EntradaSalida.mostrarString("El turno esta ocupado");
 
 		} else {
 
-			int matricula = buscarMedico(especialidad);
-
-			Turno nuevoTurno = new Turno(especialidad, dia, hora, matricula, nroDocumento);
-
-			listaTurnos.add(nuevoTurno);
-			
-			System.out.println("El turno fue asignado correctamente");
+			asignarTurno();
 
 		}
 
 		mostrarLista(listaTurnos, "turnos despues de cargar");
+		
+
+		boolean encontradoPaciente = buscarPaciente(nroDocumento);
+			
+
+		if (!encontradoPaciente) {
+
+			EntradaSalida.mostrarString("El paciente no esta la base de datos");
+
+			EntradaSalida.mostrarString("Ingrese Apellido o no para no ingresar al nuevo paciente a la base");
+
+			String nuevoApellido = EntradaSalida.leerString();
+
+			if (!nuevoApellido.equals("no")) {
+
+				agregarBaseDatos(nuevoApellido);
+			}
+
+		}
+
+	}
+
+	public void asignarTurno() {
+
+		int matricula = buscarMedico(especialidad);
+
+		Turno nuevoTurno = new Turno(especialidad, dia, hora, matricula, nroDocumento);
+
+		listaTurnos.add(nuevoTurno);
+
+		EntradaSalida.mostrarString("El turno fue asignado correctamente");
+
+	}
+
+	public void agregarBaseDatos(String nuevoApellido) {
+
+		int nuevoDni = nroDocumento;
+
+		EntradaSalida.mostrarString("Ingrese Nombre");
+
+		String nuevoNombre = EntradaSalida.leerString();
+
+		EntradaSalida.mostrarString("Ingrese fecha de nacimiento");
+
+		String nuevoFechaNacimiento = EntradaSalida.leerString();
+
+		EntradaSalida.mostrarString("Ingrese obra social");
+
+		String nuevaObraSocial = EntradaSalida.EntradaTeclado.next();
+
+		int nroHistoriaClinica = EntradaSalida.leerInt("Operador asigne numero historia clinica");
+
+		Paciente nuevoPaciente = new Paciente(nuevoApellido, nuevoNombre, nuevoDni, nuevoFechaNacimiento, nroHistoriaClinica,
+				nuevaObraSocial);
+		
+		listaPacientes.add(nuevoPaciente);
+	
+		EntradaSalida.mostrarString("Se ingreso el nuevo paciente correctamente");
+
+		mostrarLista(listaPacientes, "Lista pacientes luego de ingresar a la nueva persona");
 
 	}
 
 	public void mostrarLista(ArrayList<?> lista, String mensaje) {
 
-		System.out.println("Lista " + mensaje + ": \n" + lista);
+		EntradaSalida.mostrarString("Lista " + mensaje + ": \n" + lista);
 
 	}
 
@@ -99,6 +166,25 @@ public class ControlTurnos {
 		listaTurnos.add(turno2);
 
 		listaTurnos.add(turno3);
+
+	}
+
+	public boolean buscarPaciente(int nroDocumento) {
+
+		Paciente aux;
+
+		for (int i = 0; i < listaPacientes.size(); i++) {
+
+			aux = listaPacientes.get(i);
+
+			if (aux.dni == nroDocumento) {
+					
+				return true;
+			}
+
+		}
+
+		return false;
 
 	}
 

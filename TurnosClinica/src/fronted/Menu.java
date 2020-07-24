@@ -14,13 +14,13 @@ public class Menu {
 
 	public void ejecutar() {
 
-		ControlTurnos control = new ControlTurnos();
-
-		EntradaSalida.mostrarString("Programa para procesar los turnos de una clínica" + "\n\nPrimero se cargan los turnos");
+        EntradaSalida.mostrarString("Programa para procesar los turnos de una clínica" + "\n\nPrimero se cargan los turnos");
 		
 		ingresarDatos();
+		
+		ControlTurnos control = new ControlTurnos(nroDocumento, especialidad, dia, hora);
 
-		control.procesarTurno(nroDocumento, especialidad, dia, hora);
+		control.procesarTurno();
 		
 	}
 

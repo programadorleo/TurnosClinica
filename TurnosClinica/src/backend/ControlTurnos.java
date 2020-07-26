@@ -15,6 +15,10 @@ public class ControlTurnos {
 	private ArrayList<Paciente> listaPacientes = new ArrayList<Paciente>();
 	private ArrayList<Turno> listaTurnos = new ArrayList<Turno>();
 
+	public ControlTurnos() {
+		
+	}
+	
 	public ControlTurnos(int nroDocumento, String especialidad, int dia, int hora) {
 		super();
 		this.nroDocumento = nroDocumento;
@@ -22,6 +26,7 @@ public class ControlTurnos {
 		this.dia = dia;
 		this.hora = hora;
 	}
+	
 
 	public void procesarTurno() {
 
@@ -220,5 +225,17 @@ public class ControlTurnos {
 
 		return 0;
 	}
-
+	
+	public ArrayList<Turno> getListaTurnos() {
+		return listaTurnos;
+	}
+	
+	public ArrayList<Paciente> getListaPacientes() {
+		return listaPacientes;
+	}
+	
+	public ArrayList<Medico> getListaMedicos() {
+		return listaMedicos;
+	}	
+	
 }

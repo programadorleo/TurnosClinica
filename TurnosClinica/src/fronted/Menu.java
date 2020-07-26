@@ -1,6 +1,8 @@
 package fronted;
 
 import backend.ControlTurnos;
+import backend.Paciente;
+import backend.Medico;
 
 public class Menu {
 
@@ -11,18 +13,104 @@ public class Menu {
 	private static int dia;
 
 	private static int hora;
+	
+	private static ControlTurnos control;
+	
+	private static boolean controlCreado = false;
 
 	public void ejecutar() {
 
-        EntradaSalida.mostrarString("Programa para procesar los turnos de una clínica" + "\n\nPrimero se cargan los turnos");
+        EntradaSalida.mostrarString("Programa para procesar los turnos de una clínica" + "\n");
+        System.out.println("---------------");
+        System.out.println("Escoja una opción:");
+        System.out.println("1 - Asignar un nuevo turno");
+        System.out.println("2 - Ver lista de turnos");
+        System.out.println("3 - Ver datos de paciente");
+        System.out.println("4 - Ver datos de médico");
+        System.out.println("5 - Salir del programa");
+        System.out.println("---------------");
+        int op = 0;
 		
-		ingresarDatos();
-		
-		ControlTurnos control = new ControlTurnos(nroDocumento, especialidad, dia, hora);
+        try {
+			op = EntradaSalida.leerInt(":");
+		} catch (Exception e) {
+			EntradaSalida.nuevaLinea();
+			EntradaSalida.mostrarString("Ingreso incorreto. Intente nuevamente.\n");
+			ejecutar();
+		}		
+        switch (op) {
+        // Asignar un nuevo turno
+        case 1:	
+        	//Llama al método ingresarDatos() para cargar un nuevo turno.
+        	ingresarDatos();
+        	control = new ControlTurnos(nroDocumento, especialidad, dia, hora);
+    		controlCreado = true;
+    		control.procesarTurno();
+    		System.out.println("Turno asignado correctamente.\n");
+    		ejecutar();
+        	break;
+        // Ver todos los turnos programados
+        case 2:
+        	if (!controlCreado)	control = new ControlTurnos();
+        	
+        	if (control.getListaTurnos().size()==0) {
+        		control.cargarListaTurnos();      		
+        	}
+        	
+        	control.mostrarLista(control.getListaTurnos(), "de turnos");
+        	ejecutar();
+        	break;
+        // Buscar paciente por número de DNI
+        case 3:
+        	ControlTurnos control3 = new ControlTurnos();
+        	control3.cargarListaPacientes();
+        	System.out.println("Ingrese DNI del paciente:");
+        	int dniPaciente = chequeaNumeros(op);
+        	// Busca en la lista de pacientes alguno que coincida con el DNI ingresado
+        	boolean existePaciente = false;
+        	for (Paciente p : control3.getListaPacientes()) {
+        		if (dniPaciente == p.getDni()) {
+        			System.out.println(p.toString());
+        			existePaciente = true;
+        			break;
+        		}
+        	}
+        	// Si no encuentra ninguno, muestra monsaje de error y vuelve al menú principal
+        	if (!existePaciente) System.out.println("Paciente no encontrado");
+        	// Vuelve al menú principal
+        	ejecutar();
+        	break;
+        // Buscar médico por número de DNI        	
+        case 4:
+        	ControlTurnos control4 = new ControlTurnos();
+        	control4.cargarListaMedicos();
+        	System.out.println("Ingrese DNI del médico:");
+        	int dniMedico = chequeaNumeros(op);
+        	// Busca en la lista de pacientes alguno que coincida con el DNI ingresado
+        	boolean existeMedico = false;
+        	for (Medico m : control4.getListaMedicos()) {
+        		if (dniMedico == m.getDni()) {
+        			System.out.println(m.toString());
+        			existeMedico = true;
+        			break;
+        		}
+        	}
+        	// Si no encuentra ninguno, muestra monsaje de error y vuelve al menú principal
+        	if (!existeMedico) System.out.println("Médico no encontrado");
+        	// Vuelve al menú principal
+        	ejecutar();
+        	break;        	
+        case 5:
+        	//Cierra el programa
+        	System.out.println("Gracias por utilizar el servicio.");
+        	System.exit(0);
+        default:
+        	ejecutar();
+        }		
 
-		control.procesarTurno();
 		
-	}
+	} // End ejecutar()
+	
 
 	public static void ingresarDatos() {
 
@@ -73,12 +161,12 @@ public class Menu {
 		imprimirInformacion();
 		System.out.println("\n");
 		
-	}
+	} // End ingresarDatos()
 	
 	public static int chequeaNumeros (int num) {
 		
 		try {
-			num =  EntradaSalida.leerInt("Número");
+			num =  EntradaSalida.leerInt(":");
 			//Si se introdujo un número, la función devuelve su valor
 			return num;
 		} catch (Exception e) {
@@ -89,7 +177,7 @@ public class Menu {
 			//La función devuelve 0 si se encontró este error
 			return 0;
 		}	
-	}
+	} // End chequeaNumeros
 	
 	public static void imprimirInformacion() {
 		System.out.println("DNI: " + nroDocumento);
@@ -98,5 +186,4 @@ public class Menu {
 		System.out.println("Hora: " + hora);
 	}
 		
-
-}
+} // End Menu

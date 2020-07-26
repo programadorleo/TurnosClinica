@@ -39,6 +39,10 @@ public class Paciente extends Persona {
 		this.obraSocial = obraSocial;
 	}
 	
+	public int getDni() {
+		return this.dni;
+	}
+	
 	public String toString() {
 		
 		return "Apellido: "+apellido+" Nombre: "+nombre+" DNI: "+dni+" Fecha Nacimiento: "+fechaNacimiento+

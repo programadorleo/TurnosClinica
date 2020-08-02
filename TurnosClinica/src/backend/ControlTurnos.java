@@ -1,7 +1,6 @@
 package backend;
 
 import java.util.*;
-
 import conectaBD.ModificaBD;
 import fronted.*;
 
@@ -49,6 +48,7 @@ public class ControlTurnos {
 
 		//mostrarLista(listaTurnos, "turnos despues de cargar");
 		
+		asignarTurno();
 
 		boolean encontradoPaciente = buscarPaciente(nroDocumento);
 			
@@ -78,11 +78,12 @@ public class ControlTurnos {
 
 		Turno nuevoTurno = new Turno(especialidad, dia, hora, matricula, nroDocumento);
 
+		
 		miBD.agregarTurno(nuevoTurno);
 		
 		//listaTurnos.add(nuevoTurno);
 
-		EntradaSalida.mostrarString("El turno fue asignado correctamente");
+		//EntradaSalida.mostrarString("El turno fue asignado correctamente");
 
 	}
 

@@ -46,7 +46,7 @@ public class Menu {
         	control = new ControlTurnos(nroDocumento, especialidad, dia, hora);
     		controlCreado = true;
     		control.procesarTurno();
-    		System.out.println("Turno asignado correctamente.\n");
+    		//System.out.println("Turno asignado correctamente.\n");
     		ejecutar();
         	break;
         // Ver todos los turnos programados

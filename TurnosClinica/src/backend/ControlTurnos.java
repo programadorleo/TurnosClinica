@@ -2,6 +2,7 @@ package backend;
 
 import java.util.*;
 
+import conectaBD.ModificaBD;
 import fronted.*;
 
 public class ControlTurnos {
@@ -13,7 +14,7 @@ public class ControlTurnos {
 
 	private ArrayList<Medico> listaMedicos = new ArrayList<Medico>();
 	private ArrayList<Paciente> listaPacientes = new ArrayList<Paciente>();
-	private ArrayList<Turno> listaTurnos = new ArrayList<Turno>();
+	//private ArrayList<Turno> listaTurnos = new ArrayList<Turno>();
 
 	public ControlTurnos() {
 		
@@ -32,11 +33,11 @@ public class ControlTurnos {
 
 		cargarListas();
 
-		mostrarLista(listaTurnos, "turnos antes de cargar");
+		//mostrarLista(listaTurnos, "turnos antes de cargar");
 
-		boolean encontradoTurno = buscarTurno(especialidad, dia, hora);
+		//boolean encontradoTurno = buscarTurno(especialidad, dia, hora);
 
-		if (encontradoTurno) {
+		/*if (encontradoTurno) {
 
 			EntradaSalida.mostrarString("El turno esta ocupado");
 
@@ -44,9 +45,9 @@ public class ControlTurnos {
 
 			asignarTurno();
 
-		}
+		}*/
 
-		mostrarLista(listaTurnos, "turnos despues de cargar");
+		//mostrarLista(listaTurnos, "turnos despues de cargar");
 		
 
 		boolean encontradoPaciente = buscarPaciente(nroDocumento);
@@ -70,12 +71,16 @@ public class ControlTurnos {
 	}
 
 	public void asignarTurno() {
+		
+		ModificaBD miBD = new ModificaBD();
 
 		int matricula = buscarMedico(especialidad);
 
 		Turno nuevoTurno = new Turno(especialidad, dia, hora, matricula, nroDocumento);
 
-		listaTurnos.add(nuevoTurno);
+		miBD.agregarTurno(nuevoTurno);
+		
+		//listaTurnos.add(nuevoTurno);
 
 		EntradaSalida.mostrarString("El turno fue asignado correctamente");
 
@@ -166,11 +171,11 @@ public class ControlTurnos {
 
 		Turno turno3 = new Turno("Oftalmologia", 1, 1, 300, 42000000);
 
-		listaTurnos.add(turno1);
+		//listaTurnos.add(turno1);
 
-		listaTurnos.add(turno2);
+		//listaTurnos.add(turno2);
 
-		listaTurnos.add(turno3);
+		//listaTurnos.add(turno3);
 
 	}
 
@@ -192,7 +197,7 @@ public class ControlTurnos {
 		return false;
 
 	}
-
+/*
 	public boolean buscarTurno(String especialidad, int dia, int hora) {
 
 		Turno aux;
@@ -212,7 +217,7 @@ public class ControlTurnos {
 
 		return false;
 
-	}
+	}*/
 
 	public int buscarMedico(String especialidad) {
 
@@ -226,9 +231,9 @@ public class ControlTurnos {
 		return 0;
 	}
 	
-	public ArrayList<Turno> getListaTurnos() {
+	/*public ArrayList<Turno> getListaTurnos() {
 		return listaTurnos;
-	}
+	}*/
 	
 	public ArrayList<Paciente> getListaPacientes() {
 		return listaPacientes;

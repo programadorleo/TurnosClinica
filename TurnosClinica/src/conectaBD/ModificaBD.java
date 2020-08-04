@@ -2,6 +2,8 @@ package conectaBD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -9,39 +11,26 @@ import backend.Turno;
 
 public class ModificaBD {
 
-	private static int contadorNumeroTurno = 20;
-
-	private static int numeroTurno;
+	private static int contadorNumeroTurno = 71;
 
 	private static Connection miConexion;
 
-	private static Statement miStatement;
+	public ModificaBD() {
 
- 
-     public void mostrarMensaje(){
-    	 
-    	 System.out.println("Mensaje mostrados");
-     }
-	
+	}
+
 	public void agregarTurno(Turno nvoTurno) {
 
-	
-		  numeroTurno = 50;
-		  
-		  String especialidad= nvoTurno.getEspecialidad();  		  
-		  int dia= nvoTurno.getDia(); 
-		  int hora=nvoTurno.getHora(); 
-		  int matricula=nvoTurno.getNroMatricula(); 
-		  int dni=nvoTurno.getDniPaciente();
-		 
-		  String datos =          "INSERT INTO turnos(NUMEROTURNO,ESPECIALIDAD,DIA,HORA,NUMEROMATRICULA,DNIPACIENTE)VALUE(numeroTurno ,'+especialidad+','+dia+','+hora+','+matricula+','+dni+)";
-	   // String instruccionSql = "INSERT INTO turnos(NUMEROTURNO,ESPECIALIDAD,DIA,HORA,NUMEROMATRICULA,DNIPACIENTE)VALUE()";
-		  
+		int numeroTurno = contadorNumeroTurno++;
+		String especialidad = nvoTurno.getEspecialidad();
+		int dia = nvoTurno.getDia();
+		int hora = nvoTurno.getHora();
+		int matricula = nvoTurno.getNroMatricula();
+		int dni = nvoTurno.getDniPaciente();
+
 		try {
 
 			miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_java", "root", "");
-
-			miStatement = miConexion.createStatement();
 
 		} catch (Exception e) {
 
@@ -49,13 +38,19 @@ public class ModificaBD {
 
 		}
 
-		 //String instruccionSql = "INSERT INTO turnos(NUMEROTURNO,ESPECIALIDAD,DIA,HORA,NUMEROMATRICULA,DNIPACIENTE)VALUE(nroTurno,especialidad,dia,hora,matricula,dni)";
-
-		//String instruccionSql = "INSERT INTO turnos(NUMEROTURNO,ESPECIALIDAD,DIA,HORA,NUMEROMATRICULA,DNIPACIENTE)VALUE(16,'Cardiologia',3,10,450,46000000)";
-
 		try {
 
-			miStatement.executeUpdate(datos);
+			PreparedStatement ps = miConexion.prepareStatement(
+					"INSERT INTO turnos(NUMEROTURNO,ESPECIALIDAD,DIA,HORA,NUMEROMATRICULA,DNIPACIENTE)VALUES(?,?,?,?,?,?)");
+
+			ps.setInt(1, numeroTurno);
+			ps.setString(2, especialidad);
+			ps.setInt(3, dia);
+			ps.setInt(4, hora);
+			ps.setInt(5, matricula);
+			ps.setInt(6, dni);
+
+			ps.executeUpdate();
 
 			System.out.println("Datos insertados correctamente");
 
@@ -63,6 +58,31 @@ public class ModificaBD {
 
 			System.out.println("No se ingresaron los datos " + e.getMessage());
 
+			e.printStackTrace();
+		}
+
+	}
+
+
+	public void mostrarTurnos() {
+
+		try {
+
+			miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_java", "root", "");
+
+			Statement miStatement = miConexion.createStatement();
+
+			ResultSet miResultSet = miStatement.executeQuery("SELECT * FROM turnos");
+
+			while (miResultSet.next()) {
+
+				System.out.println(miResultSet.getString("NUMEROTURNO") + " " + miResultSet.getString("ESPECIALIDAD")
+						+ " " + miResultSet.getString("DIA") + " " + miResultSet.getString("HORA") + " "
+						+ miResultSet.getString("NUMEROMATRICULA") + " " + miResultSet.getString("DNIPACIENTE"));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

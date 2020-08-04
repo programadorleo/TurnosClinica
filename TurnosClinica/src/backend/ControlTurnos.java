@@ -10,6 +10,8 @@ public class ControlTurnos {
 	private String especialidad;
 	private int dia;
 	private int hora;
+	private ModificaBD miBD;
+	
 
 	private ArrayList<Medico> listaMedicos = new ArrayList<Medico>();
 	private ArrayList<Paciente> listaPacientes = new ArrayList<Paciente>();
@@ -72,20 +74,28 @@ public class ControlTurnos {
 
 	public void asignarTurno() {
 		
-		ModificaBD miBD = new ModificaBD();
+	    miBD = new ModificaBD();
 
 		int matricula = buscarMedico(especialidad);
 
 		Turno nuevoTurno = new Turno(especialidad, dia, hora, matricula, nroDocumento);
-
 		
 		miBD.agregarTurno(nuevoTurno);
-		
-		//listaTurnos.add(nuevoTurno);
+			
 
 		//EntradaSalida.mostrarString("El turno fue asignado correctamente");
 
 	}
+	
+	public void mostrarTurnos() {
+					
+		miBD = new ModificaBD();
+		
+		miBD.mostrarTurnos();
+		
+	}
+	
+	
 
 	public void agregarBaseDatos(String nuevoApellido) {
 
@@ -115,6 +125,8 @@ public class ControlTurnos {
 		mostrarLista(listaPacientes, "Lista pacientes luego de ingresar a la nueva persona");
 
 	}
+	
+
 
 	public void mostrarLista(ArrayList<?> lista, String mensaje) {
 

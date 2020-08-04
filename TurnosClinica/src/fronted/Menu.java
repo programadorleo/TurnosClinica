@@ -46,18 +46,20 @@ public class Menu {
         	control = new ControlTurnos(nroDocumento, especialidad, dia, hora);
     		controlCreado = true;
     		control.procesarTurno();
-    		//System.out.println("Turno asignado correctamente.\n");
+    		System.out.println("Turno asignado correctamente.\n");
     		ejecutar();
         	break;
         // Ver todos los turnos programados
         case 2:
         	if (!controlCreado)	control = new ControlTurnos();
         	
-        /*	if (control.getListaTurnos().size()==0) {
-        		control.cargarListaTurnos();      		
-        	}*/
+        	//if (control.getListaTurnos().size()==0) {
+        	//	control.cargarListaTurnos();      		
+        	//}
         	
-        //	control.mostrarLista(control.getListaTurnos(), "de turnos");
+        	control.mostrarTurnos();
+        	
+        	//control.mostrarLista(control.getListaTurnos(), "de turnos");
         	ejecutar();
         	break;
         // Buscar paciente por número de DNI

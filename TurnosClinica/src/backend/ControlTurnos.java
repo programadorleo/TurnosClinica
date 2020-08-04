@@ -1,7 +1,7 @@
 package backend;
 
 import java.util.*;
-
+import conectaBD.ModificaBD;
 import fronted.*;
 
 public class ControlTurnos {
@@ -10,10 +10,12 @@ public class ControlTurnos {
 	private String especialidad;
 	private int dia;
 	private int hora;
+	private ModificaBD miBD;
+	
 
 	private ArrayList<Medico> listaMedicos = new ArrayList<Medico>();
 	private ArrayList<Paciente> listaPacientes = new ArrayList<Paciente>();
-	private ArrayList<Turno> listaTurnos = new ArrayList<Turno>();
+	//private ArrayList<Turno> listaTurnos = new ArrayList<Turno>();
 
 	public ControlTurnos() {
 		
@@ -32,11 +34,11 @@ public class ControlTurnos {
 
 		cargarListas();
 
-		mostrarLista(listaTurnos, "turnos antes de cargar");
+		//mostrarLista(listaTurnos, "turnos antes de cargar");
 
-		boolean encontradoTurno = buscarTurno(especialidad, dia, hora);
+		//boolean encontradoTurno = buscarTurno(especialidad, dia, hora);
 
-		if (encontradoTurno) {
+		/*if (encontradoTurno) {
 
 			EntradaSalida.mostrarString("El turno esta ocupado");
 
@@ -44,10 +46,11 @@ public class ControlTurnos {
 
 			asignarTurno();
 
-		}
+		}*/
 
-		mostrarLista(listaTurnos, "turnos despues de cargar");
+		//mostrarLista(listaTurnos, "turnos despues de cargar");
 		
+		asignarTurno();
 
 		boolean encontradoPaciente = buscarPaciente(nroDocumento);
 			
@@ -70,16 +73,29 @@ public class ControlTurnos {
 	}
 
 	public void asignarTurno() {
+		
+	    miBD = new ModificaBD();
 
 		int matricula = buscarMedico(especialidad);
 
 		Turno nuevoTurno = new Turno(especialidad, dia, hora, matricula, nroDocumento);
+		
+		miBD.agregarTurno(nuevoTurno);
+			
 
-		listaTurnos.add(nuevoTurno);
-
-		EntradaSalida.mostrarString("El turno fue asignado correctamente");
+		//EntradaSalida.mostrarString("El turno fue asignado correctamente");
 
 	}
+	
+	public void mostrarTurnos() {
+					
+		miBD = new ModificaBD();
+		
+		miBD.mostrarTurnos();
+		
+	}
+	
+	
 
 	public void agregarBaseDatos(String nuevoApellido) {
 
@@ -109,6 +125,8 @@ public class ControlTurnos {
 		mostrarLista(listaPacientes, "Lista pacientes luego de ingresar a la nueva persona");
 
 	}
+	
+
 
 	public void mostrarLista(ArrayList<?> lista, String mensaje) {
 
@@ -166,11 +184,11 @@ public class ControlTurnos {
 
 		Turno turno3 = new Turno("Oftalmologia", 1, 1, 300, 42000000);
 
-		listaTurnos.add(turno1);
+		//listaTurnos.add(turno1);
 
-		listaTurnos.add(turno2);
+		//listaTurnos.add(turno2);
 
-		listaTurnos.add(turno3);
+		//listaTurnos.add(turno3);
 
 	}
 
@@ -192,7 +210,7 @@ public class ControlTurnos {
 		return false;
 
 	}
-
+/*
 	public boolean buscarTurno(String especialidad, int dia, int hora) {
 
 		Turno aux;
@@ -212,7 +230,7 @@ public class ControlTurnos {
 
 		return false;
 
-	}
+	}*/
 
 	public int buscarMedico(String especialidad) {
 
@@ -226,9 +244,9 @@ public class ControlTurnos {
 		return 0;
 	}
 	
-	public ArrayList<Turno> getListaTurnos() {
+	/*public ArrayList<Turno> getListaTurnos() {
 		return listaTurnos;
-	}
+	}*/
 	
 	public ArrayList<Paciente> getListaPacientes() {
 		return listaPacientes;

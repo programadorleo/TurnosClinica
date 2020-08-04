@@ -53,11 +53,13 @@ public class Menu {
         case 2:
         	if (!controlCreado)	control = new ControlTurnos();
         	
-        	if (control.getListaTurnos().size()==0) {
-        		control.cargarListaTurnos();      		
-        	}
+        	//if (control.getListaTurnos().size()==0) {
+        	//	control.cargarListaTurnos();      		
+        	//}
         	
-        	control.mostrarLista(control.getListaTurnos(), "de turnos");
+        	control.mostrarTurnos();
+        	
+        	//control.mostrarLista(control.getListaTurnos(), "de turnos");
         	ejecutar();
         	break;
         // Buscar paciente por número de DNI

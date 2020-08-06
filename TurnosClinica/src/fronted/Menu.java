@@ -2,6 +2,7 @@ package fronted;
 
 import backend.ControlTurnos;
 import backend.Paciente;
+import conectaBD.ModificaBD;
 import backend.Medico;
 
 public class Menu {
@@ -52,14 +53,13 @@ public class Menu {
         // Ver todos los turnos programados
         case 2:
         	if (!controlCreado)	control = new ControlTurnos();
-        	
+      	
         	//if (control.getListaTurnos().size()==0) {
         	//	control.cargarListaTurnos();      		
-        	//}
-        	
+        	//}        	
         	control.mostrarTurnos();
-        	
         	//control.mostrarLista(control.getListaTurnos(), "de turnos");
+        	System.out.println("----------------------------");
         	ejecutar();
         	break;
         // Buscar paciente por número de DNI
@@ -68,8 +68,11 @@ public class Menu {
         	control3.cargarListaPacientes();
         	System.out.println("Ingrese DNI del paciente:");
         	int dniPaciente = chequeaNumeros(op);
+        	control3.buscarPaciente(dniPaciente);      	
+        	
+        	System.out.println("----------------------------");
         	// Busca en la lista de pacientes alguno que coincida con el DNI ingresado
-        	boolean existePaciente = false;
+        	/*boolean existePaciente = false;
         	for (Paciente p : control3.getListaPacientes()) {
         		if (dniPaciente == p.getDni()) {
         			System.out.println(p.toString());
@@ -77,8 +80,11 @@ public class Menu {
         			break;
         		}
         	}
+        	*/
+        	/*
         	// Si no encuentra ninguno, muestra monsaje de error y vuelve al menú principal
         	if (!existePaciente) System.out.println("Paciente no encontrado");
+        	*/
         	// Vuelve al menú principal
         	ejecutar();
         	break;
@@ -88,7 +94,9 @@ public class Menu {
         	control4.cargarListaMedicos();
         	System.out.println("Ingrese DNI del médico:");
         	int dniMedico = chequeaNumeros(op);
+        	control4.buscarMedicoPorDNI(dniMedico);
         	// Busca en la lista de pacientes alguno que coincida con el DNI ingresado
+        	/*
         	boolean existeMedico = false;
         	for (Medico m : control4.getListaMedicos()) {
         		if (dniMedico == m.getDni()) {
@@ -99,7 +107,9 @@ public class Menu {
         	}
         	// Si no encuentra ninguno, muestra monsaje de error y vuelve al menú principal
         	if (!existeMedico) System.out.println("Médico no encontrado");
+        	*/
         	// Vuelve al menú principal
+        	System.out.println("----------------------------");
         	ejecutar();
         	break;        	
         case 5:

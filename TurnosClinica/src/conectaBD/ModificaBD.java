@@ -12,11 +12,18 @@ import backend.Turno;
 public class ModificaBD {
 
 	private static int contadorNumeroTurno = 71;
+	
+	private final static String stringConnection = "jdbc:mysql://localhost:3306/proyecto_java?serverTimezone=UTC";
 
 	private static Connection miConexion;
 
 	public ModificaBD() {
-
+		try {
+			miConexion=DriverManager.getConnection(  
+					stringConnection,"root","");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
 	}
 
 	public void agregarTurno(Turno nvoTurno) {
@@ -30,7 +37,8 @@ public class ModificaBD {
 
 		try {
 
-			miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_java", "root", "");
+			miConexion = DriverManager.getConnection(stringConnection, "root", "");
+			System.out.println("Conectado!");
 
 		} catch (Exception e) {
 
@@ -68,17 +76,15 @@ public class ModificaBD {
 
 		try {
 
-			miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_java", "root", "");
-
 			Statement miStatement = miConexion.createStatement();
 
-			ResultSet miResultSet = miStatement.executeQuery("SELECT * FROM turnos");
+			ResultSet miResultSet = miStatement.executeQuery("SELECT * FROM Turnos");
 
 			while (miResultSet.next()) {
 
-				System.out.println(miResultSet.getString("NUMEROTURNO") + " " + miResultSet.getString("ESPECIALIDAD")
-						+ " " + miResultSet.getString("DIA") + " " + miResultSet.getString("HORA") + " "
-						+ miResultSet.getString("NUMEROMATRICULA") + " " + miResultSet.getString("DNIPACIENTE"));
+				System.out.println(miResultSet.getInt("NUMEROTURNO") + " - " + miResultSet.getString("ESPECIALIDAD") + " - "
+				+ miResultSet.getInt("dia") + " - " + miResultSet.getInt("hora") + " - "
+				+ miResultSet.getString("NUMEROMATRICULA") + " - " + miResultSet.getString("DNIPACIENTE"));
 			}
 
 		} catch (SQLException e) {
@@ -87,5 +93,48 @@ public class ModificaBD {
 		}
 
 	}
+	
+	
+	public void buscarPaciente(int dni) {
+		try {
 
+			Statement miStatement = miConexion.createStatement();
+
+			ResultSet miResultSet = miStatement.executeQuery("SELECT * FROM Paciente where dni=" + dni + ";");
+
+			while (miResultSet.next()) {
+
+				System.out.println(miResultSet.getInt("id") + " - " + miResultSet.getString("apellido") + " "
+				+ miResultSet.getString("nombre") + " - " + miResultSet.getInt("dni") 
+				+ " - " + miResultSet.getString("fecha_nacimiento") + " - "
+				+ miResultSet.getInt("historia_clinica") + " - " + miResultSet.getString("obra_social"));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	
+	public void buscarMedico(int dni) {
+		try {
+
+			Statement miStatement = miConexion.createStatement();
+
+			ResultSet miResultSet = miStatement.executeQuery("SELECT * FROM Medico where dni=" + dni + ";");
+
+			while (miResultSet.next()) {
+
+				System.out.println(miResultSet.getInt("id") + " - " + miResultSet.getString("apellido") + " "
+				+ miResultSet.getString("nombre") + " - " + miResultSet.getInt("dni") 
+				+ " - " + miResultSet.getString("fecha_nacimiento") + " - "
+				+ miResultSet.getString("especialidad") + " - " + miResultSet.getString("matricula"));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}	
+	
 }

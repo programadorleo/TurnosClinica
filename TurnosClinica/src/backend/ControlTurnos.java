@@ -194,20 +194,11 @@ public class ControlTurnos {
 
 	public boolean buscarPaciente(int nroDocumento) {
 
-		Paciente aux;
-
-		for (int i = 0; i < listaPacientes.size(); i++) {
-
-			aux = listaPacientes.get(i);
-
-			if (aux.dni == nroDocumento) {
-					
-				return true;
-			}
-
-		}
-
-		return false;
+		miBD = new ModificaBD();
+		
+		miBD.buscarPaciente(nroDocumento);
+		
+		return true;
 
 	}
 /*
@@ -242,6 +233,15 @@ public class ControlTurnos {
 		}
 
 		return 0;
+	}
+	
+	public boolean buscarMedicoPorDNI (int nroDocumento) {
+		
+		miBD = new ModificaBD();
+		
+		miBD.buscarMedico(nroDocumento);
+		
+		return true;
 	}
 	
 	/*public ArrayList<Turno> getListaTurnos() {

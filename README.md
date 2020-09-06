@@ -36,7 +36,7 @@ Que se puede hacer cualquiercosa es para practicar git
   Me avisa su usuario, lo invito a participar, le va a llegar un mail, me aceptan la invitacion y ya los 
 dos podemos modificar el proyecto 
 
- #### Descargan el proyecto,  lo clonan 
+ #### Descargar el proyecto,  lo clonan 
 ### **git clone https://github.com/programadorleo/TurnosClinica.git**
  #### Aca los dos estamos en la rama master y podemos trabajar con el mismo proyecto 
 
